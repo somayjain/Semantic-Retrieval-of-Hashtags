@@ -1,0 +1,40 @@
+
+1. dark beers
+2. rock concert
+3. human rights
+4. space research
+5. weight loss
+6. rent rooms
+7. sports leagues
+8. software development
+9. stock market
+10. foreign currencies
+11. travel agents
+12. global warming
+13. fast food 		-- Can be a paper example
+
+paris sightseeing
+rock and roll 
+sports leagues
+
+morning breakfast
+europe trip
+microsoft google
+alcohol
+hair spray -- doesnt work with AND
+rock music
+software development
+software companies
+software camp
+tv shows
+romantic movies
+space research
+web browsers
+weight gain
+weight loss
+rent house
+
+negative
+white house
+new gadgets
+global warming?

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}
+  Search Evaluation
+{% endblock %}
+{% block body %}
+  <h2>{{ self.title() }}</h2>
+      <div class="twitbox">
+        <h3>What do you want to search for {{ g.user.username }}?</h3>
+        <form action="{{ url_for('evaluate') }}" method="get">
+          <p><input type="text" name="text" size="60"><!--
+          --><input type="submit" value="Search">
+        </form>
+      </div>
+    
+  
+  <form action="{{ url_for('submit_rating') }}" method="post">
+    <input type="hidden" name="query" value="{{query}}" size="60">
+    <input type="hidden" name="recall" value="{{recall}}" size="60">
+  <table style="table-layout: fixed; width: 100%;">
+    {% for i in range(10) %}
+    <tr>
+      {% if i<lenL %}
+      <td>
+        <ul class="messages"><li>
+        {{results_left[i]}}
+      </li></ul>
+      </td>
+      {% else %}
+        {% if lenL == 0%}
+          <td>
+            <ul class="messages"><li>
+            No results.
+          </li></ul>
+          </td>
+        {% endif %}
+
+      {% endif %}
+
+      {% if i<lenL %}
+      <td>
+        <ul class="messages"><li>
+        {{results_right[i]}}
+      </li></ul>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+  <input type="submit" value="Submit Feedback">
+  </form>
+{% endblock %}

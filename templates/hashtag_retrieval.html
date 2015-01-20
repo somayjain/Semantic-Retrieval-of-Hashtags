@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}
+  Hashtag Retrieval Evaluation
+{% endblock %}
+{% block body %}
+  <h2>{{ self.title() }}</h2>
+      <div class="twitbox">
+        <h3>What do you want to search for {{ g.user.username }}?</h3>
+        <form action="{{ url_for('hashtag_retrieval') }}" method="get">
+          <p><input type="text" name="text" size="60"><!--
+          --><input type="submit" value="Search">
+        </form>
+      </div>
+    
+  
+    
+  <table style="table-layout: fixed; width: 100%;">
+    <tr>
+      <td>
+        <h3>Baseline Search</h3>
+        <ul class="messages">
+        {% for result in hashtags_left %}          
+          <li>
+            
+            <a href="{{url_for('query_hashtag', text=result)}}" target="_blank">
+              #{{ result }}
+            </a>
+          </li>
+        {% else %}
+          <li><em>No results.</em>
+        {% endfor %}
+        </ul>
+      </td>
+
+      <td>
+        <h3>Our Approach</h3>
+        <ul class="messages">
+        {% for result in hashtags_right %}          
+          <li>
+            <a href="{{url_for('query_hashtag', text=result)}}" target="_blank">
+              #{{ result }}
+            </a>
+          </li>
+        {% else %}
+          <li><em>No results.</em>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+  </table>
+  
+  
+{% endblock %}

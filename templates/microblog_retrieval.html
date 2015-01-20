@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block title %}
+  Microblog Retrieval
+{% endblock %}
+{% block body %}
+  <h2>{{ self.title() }}</h2>
+      <div class="twitbox">
+        <h3>What do you want to search for?</h3>
+        <form action="{{ url_for('microblog_retrieval') }}" method="get">
+          <p><input type="text" name="text" size="60"><!--
+          --><input type="submit" value="Search">
+        </form>
+      </div>
+    
+  
+  <table style="table-layout: fixed; width: 100%;">
+    <tr>
+      <td>
+        <h3>Baseline Search</h3>
+        <ul class="messages">
+        {% for result in results_left %}          
+          <li>
+          {{ result }}
+          </li>
+        {% else %}
+          <li><em>No results.</em>
+        {% endfor %}
+        </ul>
+      </td>
+
+      <td>
+        <h3>Our Approach</h3>
+        <ul class="messages">
+        {% for result in results_right %}          
+          <li>
+          {{ result }}
+          </li>
+        {% else %}
+          <li><em>No results.</em>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+  </table>
+  
+{% endblock %}
