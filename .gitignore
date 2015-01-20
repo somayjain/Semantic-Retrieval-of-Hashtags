@@ -3,3 +3,4 @@ index/*
 *.pem
 *.seg
 *.toc
+*.db
