@@ -16,7 +16,6 @@
       <td>
         {% if queryLen%2 != 0 %}
           <ul class="messages">
-            Baseline
           {% for result in hashtags_left %}          
             <li>
               <select name='left_rating' style="float:right" required>
@@ -35,7 +34,6 @@
           </ul>
         {% else %}
           <ul class="messages">
-            Semantic
           {% for result in hashtags_right %}          
             <li>
               <select name='right_rating' style="float:right" required>
@@ -58,7 +56,6 @@
       <td>
         {% if queryLen%2 == 0 %}
           <ul class="messages">
-            Baseline
           {% for result in hashtags_left %}          
             <li>
               <select name='left_rating' style="float:right" required>
@@ -77,7 +74,6 @@
           </ul>
         {% else %}
           <ul class="messages">
-            Semantic
           {% for result in hashtags_right %}          
             <li>
               <select name='right_rating' style="float:right" required>
