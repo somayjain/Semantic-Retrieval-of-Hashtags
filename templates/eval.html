@@ -19,39 +19,75 @@
   <table style="table-layout: fixed; width: 100%;">
     <tr>
       <td>
-        <ul class="messages">
-        {% for result in results_left %}          
-          <li>
-            <select name='left_rating' style="float:right" required>
-              <option class='head' value="">Select Rating</option>
-              {% for i in range(1,6) %}
-                <option value="{{i}}">{{i}}</option>
-              {% endfor %}
-            </select>
-          {{ result }}
-          </li>
+        {% if queryLen%2 == 0 %}
+          <ul class="messages">
+          {% for result in results_left %}          
+            <li>
+              <select name='left_rating' style="float:right" required>
+                <option class='head' value="">Select Rating</option>
+                {% for i in range(1,6) %}
+                  <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+              </select>
+            {{ result }}
+            </li>
+          {% else %}
+            <li><em>No results.</em>
+          {% endfor %}
+          </ul>
         {% else %}
-          <li><em>No results.</em>
-        {% endfor %}
-        </ul>
+          <ul class="messages">
+          {% for result in results_right %}          
+            <li>
+              <select name='right_rating' style="float:right" required>
+                <option class='head' value="">Select Rating</option>
+                {% for i in range(1,6) %}
+                  <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+              </select>
+            {{ result }}
+            </li>
+          {% else %}
+            <li><em>No results.</em>
+          {% endfor %}
+          </ul>
+        {% endif %}
       </td>
 
       <td>
-        <ul class="messages">
-        {% for result in results_right %}          
-          <li>
-            <select name='right_rating' style="float:right" required>
-              <option class='head' value="">Select Rating</option>
-              {% for i in range(1,6) %}
-                <option value="{{i}}">{{i}}</option>
-              {% endfor %}
-            </select>
-          {{ result }}
-          </li>
+        {% if queryLen%2 != 0 %}
+          <ul class="messages">
+          {% for result in results_left %}          
+            <li>
+              <select name='left_rating' style="float:right" required>
+                <option class='head' value="">Select Rating</option>
+                {% for i in range(1,6) %}
+                  <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+              </select>
+            {{ result }}
+            </li>
+          {% else %}
+            <li><em>No results.</em>
+          {% endfor %}
+          </ul>
         {% else %}
-          <li><em>No results.</em>
-        {% endfor %}
-        </ul>
+          <ul class="messages">
+          {% for result in results_right %}          
+            <li>
+              <select name='right_rating' style="float:right" required>
+                <option class='head' value="">Select Rating</option>
+                {% for i in range(1,6) %}
+                  <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+              </select>
+            {{ result }}
+            </li>
+          {% else %}
+            <li><em>No results.</em>
+          {% endfor %}
+          </ul>
+        {% endif %}
       </td>
     </tr>
   </table>

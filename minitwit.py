@@ -318,15 +318,18 @@ def query_hashtag():
 def evaluate():
     
     query = request.args.get('text')
+    queryLen = 0
     results_left = []
     results_right = []
     recall = 0
     if query:
+        queryLen = len(query)
         results_left = search_baseline_query(query)
         results_right = search_semantic_query(query)
 
         recall = getRelativeRecall(query)
-    return render_template('eval.html', query=query, recall=recall, lenL=len(results_left), lenR=len(results_right),
+    return render_template('eval.html', query=query, queryLen=queryLen, recall=recall, 
+                            lenL=len(results_left), lenR=len(results_right),
                             results_left=results_left, results_right=results_right)
 
 @app.route('/microblog_retrieval')
@@ -345,12 +348,15 @@ def microblog_retrieval():
 def hashtag_retrieval_eval():
     
     query = request.args.get('text')
+    queryLen = 0
     hashtags_left = []
     hashtags_right = []
     if query:
+        queryLen = len(query)
         hashtags_left = hashtag_retrieval_baseline(query)
         hashtags_right = hashtag_retrieval_semantic(query)
-    return render_template('hashtag_retrieval_eval.html', query=query, hashtags_left=hashtags_left, hashtags_right=hashtags_right)
+    return render_template('hashtag_retrieval_eval.html', query=query, queryLen=queryLen,
+                            hashtags_left=hashtags_left, hashtags_right=hashtags_right)
 
 # For the screenshot of hashtags
 @app.route('/hashtag_retrieval')
@@ -362,9 +368,13 @@ def hashtag_retrieval():
     if query:
         hashtags_left = hashtag_retrieval_baseline(query)
         hashtags_right = hashtag_retrieval_semantic(query)
-    return render_template('hashtag_retrieval.html', query=query, hashtags_left=hashtags_left, hashtags_right=hashtags_right)
+    return render_template('hashtag_retrieval.html', query=query,
+                            hashtags_left=hashtags_left, hashtags_right=hashtags_right)
 
 def computeAP(ratings):
+    # Invalid (No results found)
+    if len(ratings) == 0:
+        return 0
     isRelevant = map(lambda x: int(x)>=4, ratings)
     numRelevant = []
     AP = 0
@@ -385,6 +395,9 @@ def computeAP(ratings):
 
 # Reciprocal Rank
 def computeRR(ratings):
+    # Invalid (No results found)
+    if len(ratings) == 0:
+        return 0
     isRelevant = map(lambda x: int(x)>=4, ratings)
     for i in range(len(isRelevant)):
         if isRelevant[i] == 1:
@@ -392,11 +405,13 @@ def computeRR(ratings):
     return 0.0
 
 def computeNDCG(ratings):
+    # Invalid (No results found)
+    if len(ratings) == 0:
+        return 0
     ratings = map(lambda x: int(x), ratings)
     DCG = []
     for i in range(len(ratings)):
         x = ratings[i]
-        print i
         temp = (pow(2, x) - 1.0)/(log(i+2, 2))
         DCG.append(temp)
         if i!=0:
@@ -406,7 +421,6 @@ def computeNDCG(ratings):
     IDCG = []
     for i in range(len(ratings)):
         x = ratings[i]
-        print i
         temp = (pow(2, x) - 1.0)/(log(i+2, 2))
         IDCG.append(temp)
         if i!=0:
@@ -421,7 +435,6 @@ def submit_rating():
     left_rating = request.form.getlist('left_rating')
     right_rating = request.form.getlist('right_rating')
     
-
     # Precision at N
     # lnumRelevant = reduce(lambda x, y:x+y, map(lambda x: int(x)>=4, left_rating))
     # rnumRelevant = reduce(lambda x, y:x+y, map(lambda x: int(x)>=4, right_rating))
@@ -629,5 +642,5 @@ app.jinja_env.filters['datetimeformat'] = format_datetime
 app.jinja_env.filters['gravatar'] = gravatar_url
 
 if __name__ == '__main__':
-    app.run(port=80, host="0.0.0.0")
+    app.run(port=8000, host="127.0.0.1")
 

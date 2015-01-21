@@ -1,17 +1,17 @@
 
 1. dark beers
-2. rock concert
-3. human rights
-4. space research
-5. weight loss
-6. rent rooms
-7. sports leagues
-8. software development
-9. stock market
-10. foreign currencies
-11. travel agents
-12. global warming
-13. fast food 		-- Can be a paper example
+2. rock concert -- Done
+3. human rights -- Done
+4. space research -- Done
+5. weight loss -- Done
+6. rent rooms -- Done
+7. sports leagues -- Done
+8. software development -- Done (Not so good results)
+9. stock market -- Done
+10. foreign currencies -- Done
+11. travel agents -- Done
+12. global warming -- Done
+13. fast food 	-- Done	-- Can be a paper example
 
 paris sightseeing
 rock and roll 

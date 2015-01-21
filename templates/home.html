@@ -1,9 +1,20 @@
 {% extends "layout.html" %}
-{% block title %}
-  Home
-{% endblock %}
+
 {% block body %}
-  <h2>{{ self.title() }}</h2>
-  df
-  Write somethitng ehriajfds
+  
+  <h2>Welcome to the Semantic Hashtag (and Microblog) Retrieval System!</h2>
+
+The system has been built primarily using Whoosh, and Flask. (Go Open Source!)
+</br>The problem that this system aims at solving is retrieval of hashtags relevant to a user query Q. The system also returns tweets most relevant to a user query. Go ahead, and give it a try! Need some inspiration? Here are some sample queries to try -
+
+<ul>
+       <li>Rock Concerts</li>
+       <li>Dark Beers</li>
+       <li>Red Wine</li>
+       <li>Sports Leagues</li>
+       <li>Fast Food</li>
+       <li>Apple developer conference</li>
+</ul>
+
+<strong>NOTE: Some queries have no results, as the representation of those query keywords(or concepts) in our index is relatively small(or non-existant) due to dataset limitations. Hence, We're always in the process of adding more tweets to our index!</strong>
 {% endblock %}
