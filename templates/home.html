@@ -16,5 +16,11 @@ The system has been built primarily using Whoosh, and Flask. (Go Open Source!)
        <li>Apple developer conference</li>
 </ul>
 
-<strong>NOTE: Some queries have no results, as the representation of those query keywords(or concepts) in our index is relatively small(or non-existant) due to dataset limitations. Hence, We're always in the process of adding more tweets to our index!</strong>
+<strong>NOTES: 
+</strong>
+<ul>
+<li>Some queries may have little or no results, as the representation of those query keywords (or semantic concepts) in our index is relatively small(or non-existant) due to dataset limitations. Hence, We're always in the process of adding more tweets to our index!</li>
+<li>The microblog and hashtag retrieval is being done by the best performing retrieval approach - KLDivergenceRank for this system. This was decided after detailed experimentation, as written in the paper.</li>
+<li>We also present the same interface that was used for evaluations (right now, shows results for KLDivergenceRank retrieval technique); Note that the search results are anonymised, and randomised to prevent cognitive bias.</li>
+</ul>
 {% endblock %}
